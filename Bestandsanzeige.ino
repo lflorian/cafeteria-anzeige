@@ -49,42 +49,26 @@ void loop() {
   adc1In = analogRead(adc1Pin);
   adc2In = analogRead(adc2Pin);
   int QuantitySelector = map(adc1In, 0, 1023, 0, 20);
-  int ProductSelector = map(adc2In, 0, 950, 1, 2);
+  int ProductSelector = map(adc2In, 0, 950, 0, 1);
+  
   //Serial.println(ProductSelector);
 
   //Serial.print(printMessage);
   //Serial.println(Anzahl);
 
   lcd.setCursor(0, 0);
-
-  if (ProductSelector == 1) {
-    lcd.clear();
-    lcd.println(products[0].ProductName+String(products[0].quantity)+leerzeichen);
-    }
-    
-  if (ProductSelector == 2) {
-    lcd.clear();
-    lcd.println(products[1].ProductName+String(products[1].quantity)+leerzeichen);
-    }
+  lcd.println(products[ProductSelector].ProductName+String(products[ProductSelector].quantity)+leerzeichen);
     
 
   if (QuantitySelector != previousQuantitySelector) {
     lcd.clear();
-    if (ProductSelector == 1) {
-      products[0].quantity = QuantitySelector;
-      Serial.println(QuantitySelector);
-      }
+    products[ProductSelector].quantity = QuantitySelector;
 
-    if (ProductSelector == 2) {
-      products[1].quantity = QuantitySelector;
-      Serial.print("if2");
-      Serial.println(QuantitySelector);
-      }
 
     previousQuantitySelector = QuantitySelector;
     Serial.println("QuantitySelector changed");
   } else {
-    delay(1000);
+    delay(500);
     Serial.println("Nothing changed. Refreshing...");
   }
 }
