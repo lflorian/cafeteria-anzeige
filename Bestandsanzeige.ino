@@ -55,21 +55,16 @@ void refreshDisplay() {
   }
 
 void loop() {
+  //Slider Mapping
   adc1In = analogRead(adc1Pin);
   adc2In = analogRead(adc2Pin);
-  int QuantitySelector = map(adc1In, 0, 1023, 0, 20);
+  int QuantitySelector = map(adc1In, 30, 1023, 0, 20);
   int ProductSelector = map(adc2In, 0, 950, 0, 1);
-  
-  //Serial.println(ProductSelector);
 
-  //Serial.print(printMessage);
-  //Serial.println(Anzahl);
-
+  //Refresh Display when value changes
   if (QuantitySelector != previousQuantitySelector) {
-    refreshDisplay();
     products[ProductSelector].quantity = QuantitySelector;
-
-
+    refreshDisplay();
     previousQuantitySelector = QuantitySelector;
     Serial.println("QuantitySelector changed");
   } else {
