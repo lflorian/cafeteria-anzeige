@@ -45,6 +45,15 @@ void setup() {
   lcd.clear();
 }
 
+void refreshDisplay() {
+  Serial.println("Refresh Display");
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.println(products[0].ProductName+String(products[0].quantity)+leerzeichen);
+  lcd.setCursor(0, 1);
+  lcd.println(products[1].ProductName+String(products[1].quantity)+leerzeichen);
+  }
+
 void loop() {
   adc1In = analogRead(adc1Pin);
   adc2In = analogRead(adc2Pin);
@@ -56,12 +65,8 @@ void loop() {
   //Serial.print(printMessage);
   //Serial.println(Anzahl);
 
-  lcd.setCursor(0, 0);
-  lcd.println(products[ProductSelector].ProductName+String(products[ProductSelector].quantity)+leerzeichen);
-    
-
   if (QuantitySelector != previousQuantitySelector) {
-    lcd.clear();
+    refreshDisplay();
     products[ProductSelector].quantity = QuantitySelector;
 
 
