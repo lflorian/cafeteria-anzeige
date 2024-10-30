@@ -48,6 +48,7 @@ void setup() {
 void refreshDisplay() {
   Serial.println("Refresh Display");
   lcd.clear();
+  
   lcd.setCursor(0, 0);
   lcd.println(products[0].ProductName+String(products[0].quantity)+leerzeichen);
   lcd.setCursor(0, 1);
