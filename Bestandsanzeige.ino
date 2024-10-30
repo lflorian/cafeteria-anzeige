@@ -28,15 +28,17 @@ Product products[] = {
 void setup() {
   //Startup Screen
   lcd.begin(16, 2);
-  lcd.setRGB(200, 200, 200);
+  lcd.setRGB(200, 0, 0);
   lcd.println("Starting .          ");
-  delay(250);
+  delay(750);
   lcd.clear();
+  lcd.setRGB(255,255,0);
   lcd.println("Starting ..          ");
-  delay(250);
+  delay(750);
   lcd.clear();
+  lcd.setRGB(30,150,0);
   lcd.println("Starting ...          ");
-  delay(250);
+  delay(750);
   lcd.clear();
   refreshDisplay();
 
@@ -70,9 +72,11 @@ void refreshDisplay() {
   }
 
   if (products[0].quantity == 0 || products[1].quantity == 0) {
-    lcd.setRGB(250, 0, 0);
-  } else {
-    lcd.setRGB(200, 200, 200);
+    lcd.setRGB(220, 10, 0); //red
+  } else if(products[0].quantity < 6 || products[1].quantity < 6) {
+        lcd.setRGB(209, 65, 0); //orange
+    } else {
+    lcd.setRGB(30, 150, 0); //green
   }
 }
 
